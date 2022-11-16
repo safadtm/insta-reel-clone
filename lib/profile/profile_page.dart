@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:insta_reel/profile_update/profile_update_page.dart';
 
 class ProfilePageUI extends StatefulWidget {
   const ProfilePageUI({super.key});
@@ -79,20 +80,34 @@ class _ProfilePageUIState extends State<ProfilePageUI> {
   }
 
   Widget customButton(bool isCurrentUserProfile) {
-    return Container(
-      height: 30.h,
-      width: 310.w,
-      decoration: BoxDecoration(
-        color: isCurrentUserProfile ? Colors.grey[300] : Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        isCurrentUserProfile ? "Edit Profile" : "Follow",
-        style: TextStyle(
-          fontSize: 15.sp,
-          fontWeight: FontWeight.w500,
-          color: isCurrentUserProfile ? Colors.black : Colors.white,
+    return InkWell(
+      onTap: () {
+        if (isCurrentUserProfile) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProfileUpdatePage(),
+            ),
+          );
+        } else {
+          ///follow functionality
+        }
+      },
+      child: Container(
+        height: 30.h,
+        width: 310.w,
+        decoration: BoxDecoration(
+          color: isCurrentUserProfile ? Colors.grey[300] : Colors.blue,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          isCurrentUserProfile ? "Edit Profile" : "Follow",
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
+            color: isCurrentUserProfile ? Colors.black : Colors.white,
+          ),
         ),
       ),
     );
